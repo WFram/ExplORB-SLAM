@@ -198,7 +198,7 @@ void Node::Update () {
     if (publish_pointcloud_param_) {
         // Get transformation from camera optical link to base
         Eigen::Affine3d T_rt(Eigen::AngleAxisd(M_PI / 2.0, Eigen::Vector3d::UnitZ()));
-        getTfTransformMatrix(T_rt, "camera_link_optical", target_frame_id_param_);
+        getTfTransformMatrix(T_rt, "zed2_left_camera_optical_frame", target_frame_id_param_);
         cam_base_R_ = T_rt.rotation();
         cam_base_T_ = T_rt.translation();
         PublishMapPoints (orb_slam_->GetAllMapPoints());
