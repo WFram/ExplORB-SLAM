@@ -2,8 +2,8 @@
   <node name="slam" pkg="orb_slam2_ros"
       type="orb_slam2_ros_stereo" output="screen">
       <!-- Camera topics to listen on -->
-      <remap from="image_left/image_color_rect" to="/camera/left/image_rect_color" />
-      <remap from="image_right/image_color_rect" to="/camera/right/image_rect_color" />
+      <remap from="image_left/image_color_rect" to="/zed2/zed_node/left/image_rect_gray" />
+      <remap from="image_right/image_color_rect" to="/zed2/zed_node/right/image_rect_gray" />
       <remap from="image_left/camera_info" to="/camera/left/camera_info" />
 
       <!-- Settings -->
@@ -13,8 +13,8 @@
       <param name="reset_map" type="bool" value="false" />
 
       <!-- Static parameters -->
-      <param name="load_map" type="bool" value="false" />
-      <param name="map_file" type="string" value="map.bin" />
+      <param name="load_map" type="bool" value="true" />
+      <param name="map_file" type="string" value="$(find orb_slam2_ros)/ros/map/map_room_501.bin" />
       <param name="voc_file" type="string" value="$(find orb_slam2_ros)/orb_slam2/Vocabulary/ORBvoc.txt" />
 
       <!-- Frames -->
@@ -66,4 +66,6 @@
       <!-- Stereo baseline times fx, camera_baseline = f_x * baseline (approx.) -->
       <param name="camera_baseline" type="double" value="63.2916" /> <!-- Baseline = 119.667 -->
   </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find orb_slam2_ros)/ros/config/rviz_config.rviz"/>
 </launch>
